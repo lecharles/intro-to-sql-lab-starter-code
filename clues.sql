@@ -13,11 +13,13 @@ SELECT countries.name, countrylanguages.language FROM countries JOIN countrylang
 -- Write SQL query here
 SELECT countries.name, countrylanguages.language FROM countries JOIN countrylanguages ON countrylanguages.countrycode = countries.code WHERE countrylanguages.language = 'Italian';
 SELECT countries.name, countrylanguages.language, countrylanguages.percentage FROM countries JOIN countrylanguages ON countrylanguages.countrycode = countries.code WHERE countrylanguages.language = 'Italian';
+SELECT countries.name FROM countries JOIN countrylanguages ON countrylanguages.countrycode = countries.code WHERE countrylanguages.language = 'Italian' AND countrylanguages.percentage = 100;
 
 -- Clue #4: We're booking the first flight out – maybe we've actually got a chance to catch her this time. There are only two cities she could be flying to in the country. One is named the same as the country – that would be too obvious. We're following our gut on this one; find out what other city in that country she might be flying to.
 
 -- Write SQL query here
 SELECT countries.name, countrylanguages.language, countries.population FROM countries JOIN countrylanguages ON countrylanguages.countrycode = countries.code WHERE countrylanguages.language = 'Italian' ORDER BY countries.population ASC LIMIT 2;
+SELECT cities.name FROM countries JOIN cities ON cities.countrycode = countries.code WHERE countries.name = 'San Marino' AND cities.name != 'San Marino';
 
 -- Clue #5: Oh no, she pulled a switch – there are two cities with very similar names, but in totally different parts of the globe! She's headed to South America as we speak; go find a city whose name is like the one we were headed to, but doesn't end the same. Find out the city, and do another search for what country it's in. Hurry!
 
